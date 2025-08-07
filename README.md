@@ -10,13 +10,9 @@ CloudChecker is a Python script for checking the availability of Discord usernam
 - RPS (Requests Per Second) monitoring
 - Error logging for troubleshooting
 - Should work on linux
+- works on Macintosh terminal
 
-## Showcase
 
-
-https://github.com/Cloudzik1337/DiscordUsernameChecker/assets/92876777/8066235e-91c8-4580-bc5f-138a619453aa
-
-![image](https://github.com/Cloudzik1337/DiscordUsernameChecker/assets/92876777/97153fdc-0548-4d8d-882b-532fbf9b7a1c)
 
 
 ## Getting Started
