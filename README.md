@@ -1,7 +1,5 @@
 
-[![Hits](https://hits.sh/github.com/Cloudzik1337/DiscordUsernameChecker.svg)](https://hits.sh/github.com/silentsoft/Cloudzik1337/DiscordUsernameChecker)
-[![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
-# CloudChecker !!Tokenless!!
+# SENDR Tokenless
 
 CloudChecker is a Python script for checking the availability of Discord usernames using a list of combinations and proxies. It leverages multi-threading to perform checks concurrently.
 
@@ -29,10 +27,6 @@ https://github.com/Cloudzik1337/DiscordUsernameChecker/assets/92876777/8066235e-
 
 ## Installation
 
-### Video Tutorial 
-
-https://github.com/Cloudzik1337/DiscordUsernameChecker/assets/92876777/757d3d04-603e-449c-83c8-817e1f5c1f3c
-
 
 ### For windows user
 1. Run `run.bat`
@@ -41,8 +35,8 @@ https://github.com/Cloudzik1337/DiscordUsernameChecker/assets/92876777/757d3d04-
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/Cloudzik1337/DiscordUsernameChecker.git
-cd DiscordUsernameChecker
+git clone https://github.com/Calmspec/sendr.git
+cd sendr
 ```
 2. Install requirements
 ```bash
@@ -53,16 +47,16 @@ pip install -r requirements.txt
 python cloud_checker.py
 ```
 
-## Usage
-1. Configure your proxies by adding them to the proxies.txt file.
-2. [CheapProxies](https://www.wtfproxy.com/?ref=o8hX4mfY5hfhFUSZEl146) here 3 usd / gb
-3. (Proxyless) works but thread sleeps on ratelimit (ultra slow)
-4. Customize the script by adjusting parameters like the length of the usernames, the number of threads, etc.
-5. Execute the script, and it will start checking the availability of Discord usernames.
-## Usage Dictionary Validator
-1. Run file
-2. Enter ammount of thread (for smaller than 5k dont use more than 5)
-3. Similiar + Hits will be saved to BetterNames.txt
-## Additional Information
-1. Author: @cloudzik1337
-2. Discord: discord.cloudzik.me
+there are sites you can use for proxies ill attatch some below:
+https://free-proxy-list.net
+https://us-proxy.org
+https://sslproxies.org
+https://socks-proxy.net
+https://proxyscrape.com/free-proxy-list
+https://proxy-list.download
+https://cool-proxy.net
+https://gatherproxy.com
+
+original:
+
+https://github.com/Cloudzik1337/DiscordUsernameChecker
