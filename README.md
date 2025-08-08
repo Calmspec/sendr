@@ -38,9 +38,9 @@ cd sendr
 ```bash
 pip install -r requirements.txt
 ```
-3. Run cloud_checker.py
+3. Run sendr.py
 ```bash
-python cloud_checker.py
+python sendr.py
 ```
 
 there are sites you can use for proxies ill attatch some below:
