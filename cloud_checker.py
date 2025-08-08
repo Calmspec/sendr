@@ -1,4 +1,4 @@
-"""Cloud Checker by Cloudzik1337 DC: byid"""
+"""Sendr (modified by calm, discord @m8ov original by Cloudzik133)"""
 
 import itertools
 import string
@@ -18,7 +18,7 @@ import sys
 VERSION = "1.0.5"
 
 class Config:
-    """Config class"""
+    """Config class (modified by calm, discord @m8ov)"""
     def __init__(self):
         self.config = None
         self.load_config()
@@ -66,8 +66,6 @@ signal(SIGINT, handler)
 
 
 
-
-
 confirmators =  ["y", "yes", "1", "true", "t"]
 negators =      ["n", "no", "0", "false", "f"]
 
@@ -109,14 +107,8 @@ with Path("data/proxies.txt").open("r", encoding='utf-8') as proxies_file:
     proxies = proxies_file.read().splitlines()
 
 
-
-
-
 config = Config()
 lock = threading.Lock()
-
-
-
 
 
 if len(proxies) == 0:
@@ -133,7 +125,7 @@ DEACTIVATE = False
 
 
 class Logger:
-    """Logger class"""
+    """Logger class (modified by calm, discord @m8ov)"""
     def __init__(self, file_name: str):
         """Initiate the class"""
         self.file_name = file_name
@@ -147,8 +139,6 @@ class Logger:
     def close(self):
         """Close the file"""
         self.file.close()
-
- 
 
 
 class _Colors:
@@ -185,8 +175,7 @@ Colors = _Colors()
 Logger = Logger("logs/log.txt")
 
 
-Logger.log(f"CloudChecker started at {time()}")
-
+Logger.log(f"sendrChecker started at {time()} (modified by calm, discord @m8ov)")
 
 
 def clear():
@@ -196,7 +185,7 @@ def clear():
 clear()
 
 class Pomelo:
-    """Cloud Checker"""
+    """sendr Checker"""
     def __init__(self):
         """Initiate the class"""
         self.endpoint = "https://discord.com/api/v9"
@@ -208,28 +197,21 @@ class Pomelo:
         if self.timeout is None:
             self.timeout = 30
 
-        Logger.log(f"Timeout set to {self.timeout}")
-        Logger.log(f"Remove proxies set to {self.remove_proxies}")
-        Logger.log(f"Headers set to {self.headers_post}")
-
-    # def restart_session(self):
-    #     """Restart the session"""
-    #     requests.Session.close(self.session)
-    #     self.session = requests.Session()
+        Logger.log(f"Timeout set to {self.timeout} (modified by calm, discord @m8ov)")
+        Logger.log(f"Remove proxies set to {self.remove_proxies} (modified by calm, discord @m8ov)")
+        Logger.log(f"Headers set to {self.headers_post} (modified by calm, discord @m8ov)")
 
     def proxy_err(self, name, proxy, proxy_cycle):
         name = [name, next(proxy_cycle)]
-        Logger.log(f"ReadTimeout with proxy {proxy}")
+        Logger.log(f"ReadTimeout with proxy {proxy} (modified by calm, discord @m8ov)")
         if self.remove_proxies and proxy != None:
-            Logger.log(f"Removing proxy {proxy}")
+            Logger.log(f"Removing proxy {proxy} (modified by calm, discord @m8ov)")
             self.proxies_not_working.append(proxy)
         
         
     def  check(self, name: list):
         """Check if the name is available"""
 
-    
-        # self.restart_session()
         global RPS, REQUESTS, WORKS, TAKEN, DEACTIVATE
         while not DEACTIVATE:
             try:
@@ -242,15 +224,15 @@ class Pomelo:
                     else:
                         proxy = next(proxy_cycle)
                         if len(self.proxies_not_working) >= len(proxies):
-                            Logger.log(f"Exiting because all proxies are not working")
+                            Logger.log(f"Exiting because all proxies are not working (modified by calm, discord @m8ov)")
                             
                             DEACTIVATE = True
                             # clear queue
-                            Logger.log(f"Clearing queue")
+                            Logger.log(f"Clearing queue (modified by calm, discord @m8ov)")
                             while queue.qsize() > 0:
                                 queue.get()
                                 queue.task_done()
-                            Logger.log(f"Queue cleared")
+                            Logger.log(f"Queue cleared (modified by calm, discord @m8ov)")
                             sleep(self.timeout+1)
                             print(f"\n{Colors.RED}No proxies left{Colors.ENDC}"*3)
                             
@@ -262,8 +244,6 @@ class Pomelo:
                     proxy = f"http://{str(proxy).strip()}"
 
                 
-                # Logger.log(f"Checking {name} with proxy {proxy}")
-
                 r = self.session.post(
                     url=self.endpoint + "/unique-username/username-attempt-unauthed",
                     headers = self.headers_post,
@@ -275,7 +255,7 @@ class Pomelo:
 
                 if r.status_code in [200, 201, 204]:
                     if str(r.json()) in ["", None, "{}"]:
-                        Logger.log(f"Unexpected response resp = {r.text}")
+                        Logger.log(f"Unexpected response resp = {r.text} (modified by calm, discord @m8ov)")
                         return self.check(name)
                     
 
@@ -296,7 +276,7 @@ class Pomelo:
                         name = [name, next(proxy_cycle)]
                         return self.check(name)
                 else:
-                    Logger.log(f"Unknown error with request {r.status_code}    |   {r.json()}")
+                    Logger.log(f"Unknown error with request {r.status_code}    |   {r.json()} (modified by calm, discord @m8ov)")
 
             except requests.exceptions.ProxyError:
                 self.proxy_err(name, proxy, proxy_cycle)
@@ -314,18 +294,15 @@ class Pomelo:
                 self.proxy_err(name, proxy, proxy_cycle)
                 return self.check(name)
 
-
-
             except:
-            # timeout
                 with lock:
                     try:
                         exception = traceback.format_exc()
-                        Logger.log(f"Unknown error with proxy {proxy}")
+                        Logger.log(f"Unknown error with proxy {proxy} (modified by calm, discord @m8ov)")
                         with open("logs/error.txt", "w") as f:
                             f.write(f"{exception}\n")
                             f.close()
-                        sleep(0.3) # rest for 1s
+                        sleep(0.3)
                     except:
                         pass
                 return self.check(name)
@@ -352,21 +329,21 @@ W$@@M!!! .!~~ !!     .:XUW$W!~ `"~:    :
 :::~:!!`:X~ .: ?H.!u "$$$B$$$!W:U!T$$M~
 .~~   :X@!.-~   ?@WTWo("*$$$W$TH$! `
 Wi.~!X$?!-~    : ?$$$B$Wu("**$RM!
-$R@i.~~ !     :   ~$$$$$B$$en:``
+$R@i.~~ !     :   ~$$$$$B$$en:`
 ?MXT@Wx.~    :     ~"##*$$$$M~
 
-                    {r}@{x}  Cloud 2023                  {r}@{x}
-                    {r}@{x}  github.com/cloudzik1337     {r}@{x}
-                    {r}@{x}  discord.cloudzik.me         {r}@{x}
-                    {r}@{x}  Version: {VERSION}              {r}@{x}
+                    {r}@{x}  SENDR 2025 (modified by calm, credits to Cloudzik133)           {r}@{x}
+                    {r}@{x}  github.com/Calmspec/sendr/                        {r}@{x}
+                    {r}@{x}  @m8ov                                  {r}@{x}
+                    {r}@{x}  Version: {VERSION}                                   {r}@{x}
         """
 clear()
 print(ASCII)
 
 
-
-# username can contain letters, numbers, and underscores
+# username can contain letters, numbers, underscores, and dots
 CHARS = string.ascii_lowercase + string.digits + "_" + '.'
+
 
 with open("data/names_to_check.txt", "r", encoding='utf-8') as f:
     combos = f.read().splitlines()
@@ -389,7 +366,6 @@ if len(config_str) == 2 or os.path.getsize("data/config.json") == 0 or config.ge
             config.set("webhook", None)
     if config.get("remove_proxies") is None:
         ask_proxy = input(f"Use proxies [y/n] {Colors.YELLOW}>>>{Colors.ENDC} ")
-        #ask for timeout
         ask_timeout = input(f"Timeout in seconds (Default: 30) {Colors.YELLOW}>>>{Colors.ENDC} ")
         config.set("timeout", int(ask_timeout))
         if ask_proxy.lower() in confirmators:
@@ -402,7 +378,6 @@ if len(config_str) == 2 or os.path.getsize("data/config.json") == 0 or config.ge
                 config.set("remove_proxies", False)
 
             elif ask_proxy.lower() in negators:
-                #Print to input proxies to file
                 print(f"Please input proxies to data/proxies.txt")
                 input("Press enter to continue")
                 with open("data/proxies.txt", "r", encoding='utf-8') as proxies:proxies= proxies.read().splitlines()             
@@ -416,252 +391,4 @@ if len(config_str) == 2 or os.path.getsize("data/config.json") == 0 or config.ge
                 if ask_remove_bad_proxies.lower() in confirmators:
                     config.set("remove_proxies", False)
         elif ask_proxy.lower() in negators:
-            #Warn user that proxyless is slow
-            print(f"{Colors.YELLOW} It is recommended to use proxies\nHowever you can use proxyless mode but i recommend turning off discord client while using proxyless mode{Colors.ENDC}")
-            config.set("remove_proxies", False)
-            input("Press enter to continue")
-else:
-    Logger.log(f"Loaded config {config.get_all()}")
-
-
-
-if len(combos) == 0:
-    
-    combos = itertools.product(CHARS, repeat=int(input("Length of username: ")))
-    with open("data/names_to_check.txt", "w", encoding='utf-8') as f:
-        
-        for i in combos:
-            f.write("".join(i))
-            f.write("\n")
-        f.close()
-    
-    with open("data/names_to_check.txt", "r", encoding='utf-8') as f:
-        combos = f.read().splitlines()
-        f.close()
-Logger.log(f"Loaded {len(combos)} combos")
-longest_name = max([len(name) for name in combos]) 
-Logger.log(f"Longest name is {longest_name} characters long")
-queue = queue.Queue()
-# actually load only random 50k line (Long list will take too long to load)
-try:
-    combos = random.sample(combos, 50000)
-except ValueError:
-    pass
-for name in combos:
-    print(f"[{Colors.YELLOW}+{Colors.ENDC}] Adding username = {Colors.CYAN}{name}{Colors.ENDC}", end="\r")
-    name = [name.strip(), next(proxy_cycle)]
-    queue.put(name)
-
-
-CLOUDCHECKER = Pomelo()
-Logger.log("CloudChecker successfully initiated")
-
-
-def worker():
-    """Thread worker function"""
-    while queue.qsize() > 0:
-        
-        name = queue.get()
-        try:
-            x = CLOUDCHECKER.check(name)
-            available, json, status_code = x
-        except:
-            with lock:
-                exception = traceback.format_exc()
-                with open("logs/error.txt", "a", encoding='utf-8') as f:
-                    f.write(f"{exception}\nreturned={x}")
-                    f.close()
-            available, json, status_code = "ERROR", None, None
-        name, proxy = name
-
-        proxy_formated = str(proxy[:10]+'*'*10) if proxy else 'Proxyless'
-
-        with lock:
-
-            if available is True:
-                print(f"[{Colors.GREEN}+{Colors.ENDC}] Available  : {Colors.CYAN}{name}{Colors.ENDC}, {' '*(longest_name-len(name))}RPS : {Colors.CYAN}{RPS} / s{Colors.ENDC},  resp : {Colors.CYAN}{json}{Colors.ENDC}, proxy : {Colors.CYAN}{proxy_formated}{Colors.ENDC}")
-                
-                with open("results/hits.txt", "a", encoding='utf-8') as f:
-                    f.write(name)
-                    f.write("\n")
-                    f.close()
-
-            elif available == "RATELIMITED":
-                
-                print(f"[{Colors.YELLOW}?{Colors.ENDC}] TIMEOUT    : {Colors.CYAN}{json}{Colors.ENDC}, {' '*(20-int(len(str(json))))}RPS : {Colors.CYAN}{RPS} / s{Colors.ENDC},  resp : {Colors.CYAN}{json}{Colors.ENDC},{' '*(18-int(len(str(json)))-1)}proxy : {Colors.CYAN}{proxy_formated}{Colors.ENDC}")
-            
-            elif available == "ERROR":
-               
-                with open("logs/error.txt", "a", encoding='utf-8') as f:
-                    f.write(f"{name, json, status_code}\n")
-            
-            else:
-                print(f"[{Colors.RED}-{Colors.ENDC}]   Taken    : {Colors.CYAN}{name}{Colors.ENDC}, {' '*(longest_name-len(name))}RPS : {Colors.CYAN}{RPS} / s{Colors.ENDC},  resp : {Colors.CYAN}{json}{Colors.ENDC},  proxy : {Colors.CYAN}{proxy_formated}{Colors.ENDC}")
-       
-        queue.task_done()                
-
-
-
-def RPS_CALCULATOR():
-    """Calculate RPS (Requests per second)"""
-    global RPS
-    Logger.log("Started RPS calculator thread")
-    while True:
-        RPS_BEFORE = REQUESTS
-        sleep(1)
-        RPS = REQUESTS - RPS_BEFORE
-
-start_time = time()        
-
-def TITLE_SPINNER():
-    Logger.log("Started title spinner thread")
-    """Fix for windows 11 console"""
-    TITLE = ["CloudChecker", "Avaible : {WORKS}", "Taken : {TAKEN}", "Requests : {REQUESTS}", "RPS : {RPS}", "Elapsed : {ELAPSED}s"]
-    while True:
-        for i in TITLE:
-            edited = i          
-            for _ in range(50):
-                edited = i.format(WORKS=WORKS, TAKEN=TAKEN, REQUESTS=REQUESTS, RPS=RPS, ELAPSED=round(time()-start_time))
-                os.system(f'title {edited}')
-                sleep(0.01)
-            sleep(1)
-
-def WEBHOOK_PROCESSOR():
-    Logger.log("Started webhook processor thread")
-    """Process webhook
-    Note: this function is terrible and needs to be rewritten but it works so i dont care"""
-    webhook = config.get("webhook")
-    message = config.get("message")
-    start_time = time()  # Record the start time
-
-    def return_diff(old, new):
-        """Return the difference between two lists"""
-        return list(set(new) - set(old))
-
-    names = []
-    last_send_time = time()  # Initialize the last send time
-
-    with open("results/hits.txt", "r", encoding='utf-8') as f:
-            names = f.read().splitlines()
-    
-    while True:
-        old_names = names
-        last_send_time = 0
-        with open("results/hits.txt", "r", encoding='utf-8') as f:
-            names = f.read().splitlines()
-        
-        names_diff = return_diff(old_names, names)
-        
-
-        if len(names_diff) > 1 and last_send_time-time() < 5: #if we get hits frequently and user is not scaning for super rare names we switch to batch mode
-            # wait until atleast 10 to send
-            old_names = names
-            old_diff = names_diff
-            inloop_start = time()
-            
-            new_names = []
-
-            while len(names_diff) < 10 - len(names_diff):
-                # calculate if in loop for more than 10 seconds
-                with open("results/hits.txt", "r", encoding='utf-8') as f:
-                    names = f.read().splitlines()
-
-                names_diff = return_diff(old_names, names)
-
-                for name in names_diff:
-                    
-                    if name not in str(new_names):
-                        
-                        new_name = name + ":!#:!#" + str(round(time()))
-                        new_names.append(new_name)
-
-                if time() - inloop_start > 10:
-                    break
-
-                sleep(0.3)
-
-            # Extend names_diff with the new names
-          
-            names_diff.extend(new_names)
-
-
-            payload = []
-            #names_diff reversed so the oldest hits are sent first
-            for name in names_diff[::-1]:
-                current_time = time()
-                hittime = round(current_time)
-                
-                if ":!#:!#" in name:
-                    name, hittime = name.split(":!#:!#")
-                    
-                hittime = f'<t:{hittime}:T>'
-
-                msg = message.replace("<name>", name).replace("<time>", str(hittime)).replace("<elapsed>", str(round(current_time - start_time))).replace("<RPS>", str(RPS))
-                payload.append(
-                    msg
-                )
-            
-            json = {"content": "\n".join(payload), 'username': 'CloudChecker', 'avatar_url': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Burning_Yellow_Sunset.jpg/1280px-Burning_Yellow_Sunset.jpg'}
-            
-            x = CLOUDCHECKER.session.post(
-                url=webhook,
-                json=json
-            )
-            
-            # Rate limit
-            if x.status_code == 429:
-                sleep(x.json()["retry_after"])
-
-            # Update the last send time after sending the batch
-            last_send_time = time()
-            sleep(0.5)  # Sleep for 0.5 seconds between batches
-        elif len(names_diff) == 1:
-            name = names_diff[0]
-            current_time = time()
-            hittime = f'<t:{round(current_time)}:T>'
-            json = {"content": message.replace("<name>", name).replace("<time>", str(hittime)).replace("<elapsed>", str(round(current_time - start_time))).replace("<RPS>", str(RPS)), 'username': 'CloudChecker', 'avatar_url': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Burning_Yellow_Sunset.jpg/1280px-Burning_Yellow_Sunset.jpg'}
-            x = CLOUDCHECKER.session.post(
-                url=webhook,
-                json=json
-            )
-            if x.status_code == 429:
-                sleep(x.json()["retry_after"])
-
-
-        sleep(1)
-
-threading.Thread(target=RPS_CALCULATOR, daemon=True).start()
-
-# Start the title spinner only if the os is windows
-if os.name == "nt":
-    threading.Thread(target=TITLE_SPINNER, daemon=True).start()
-
-if config.get("webhook") is not None:
-    threading.Thread(target=WEBHOOK_PROCESSOR, daemon=True).start()
-
-clear()
-print(ASCII)
-
-print(f"[{Colors.YELLOW}+{Colors.ENDC}] Loaded {Colors.CYAN}{len(combos)}{Colors.ENDC} combos")
-ask = input(f"How many threads {Colors.YELLOW}>>>{Colors.ENDC} ")
-for _ in range(5):
-    print(f"Starting in {5-_}s. with {ask} threads (Ctrl+c Abort)", end="\r")
-    sleep(1)
-print(f"Starting in 0s. with {ask} threads (Ctrl+c Abort)", end="\r")
-ths = []
-
-for i in range(int(ask)):
-    t = threading.Thread(target=worker)
-    t.daemon = True   
-    t.start()
-    ths.append(t)
-    
-Logger.log(f"Started {ask} threads")
-
-queue.join()
-
-print(f"[{Colors.GREEN}+{Colors.ENDC}] Done")
-print(f"[{Colors.GREEN}+{Colors.ENDC}] Total requests = {Colors.CYAN}{REQUESTS}{Colors.ENDC} Note: requests wont equal to hits + taken because of sometimes requests are rate limited")
-print(f"[{Colors.GREEN}+{Colors.ENDC}] Total valid names = {Colors.CYAN}{WORKS}{Colors.ENDC}")
-print(f"[{Colors.GREEN}+{Colors.ENDC}] Total invalid names = {Colors.CYAN}{TAKEN}{Colors.ENDC}")
-print(f"[{Colors.GREEN}+{Colors.ENDC}] Total time = {Colors.CYAN}{round(time()-start_time)}{Colors.ENDC} seconds")
+            print(f"{Colors.YELLOW} It is
