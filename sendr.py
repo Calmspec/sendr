@@ -391,4 +391,4 @@ if len(config_str) == 2 or os.path.getsize("data/config.json") == 0 or config.ge
                 if ask_remove_bad_proxies.lower() in confirmators:
                     config.set("remove_proxies", False)
         elif ask_proxy.lower() in negators:
-            print(f"{Colors.YELLOW} It is
+print(f"{Colors.YELLOW} It is working!{Colors.END}")
