@@ -53,6 +53,4 @@ https://proxy-list.download
 https://cool-proxy.net
 https://gatherproxy.com
 
-original:
 
-https://github.com/Cloudzik1337/DiscordUsernameChecker
